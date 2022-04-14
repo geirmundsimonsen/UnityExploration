@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum ValueChangeMode {
     Absolute,
@@ -28,5 +29,32 @@ public class Value {
 
     public Value(float v) {
         value = v;
+    }
+}
+
+public class Cooldown {
+    float cooldown;
+    float fixedDeltaTime;
+    float runningCooldown;
+    
+    public float factor = 1.0f;
+
+    public Cooldown(float cooldown) {
+        this.cooldown = cooldown;
+        fixedDeltaTime = Time.fixedDeltaTime;
+        Reset();
+    }
+
+    public void Tick() {
+        Debug.Log(factor);
+        runningCooldown -= fixedDeltaTime * factor;
+    }
+
+    public bool isReady() {
+        return runningCooldown <= 0;
+    }
+
+    public void Reset() {
+        runningCooldown = cooldown;
     }
 }
