@@ -9,13 +9,15 @@ public class Game : MonoBehaviour {
     public string startingLevel;
 
     private void Awake() {
-        TestEngine.Test();
+        
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     void Start() {
+        TestBench.Test();
+        
         if (startFromTitleScreen) {
             StartGameFromTitleScreen();
         } else {
