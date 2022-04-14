@@ -114,7 +114,7 @@ public class Dash : UtilitySkill {
 
     public void Trigger(Player player) {
         p = player;
-        dashVector = player.inputMove * 7;
+        dashVector = player.moveVector * 7;
         //player.immortal = true; // Invoke, Coroutines outside MonoBehaviour context...
     }
 
@@ -126,71 +126,10 @@ public class Dash : UtilitySkill {
 
 public class Blink : UtilitySkill {
     public void Trigger(Player player) {
-        player.rb.position += player.inputMove * 1;
+        player.rb.position += player.moveVector * 1;
     }
 
     public void Update(Player player) {
 
-    }
-}
-
-public class TestEngine {
-    public static void Test() {
-        /*
-        // Bullet meets Enemy
-        {
-            Player p = new Player();
-            Enemy e = new Snark();
-            Bullet b = new Bullet();
-            b.firedBy = p;
-            Engine.Calculate(b, e);
-            if (e.health != 91f) { throw new Exception(); }
-        }
-        
-        // Bullet with CriticalStrike meets Enemy
-        {
-            P p = new P();
-            E e = new E();
-            B b = new B();
-            b.firedBy = p;
-            p.damageModifiers.Add(new CriticalStrike());
-            Engine.Calculate(b, e);
-            if (!(e.health == 82f || e.health == 91f)) { throw new Exception(); }
-        }
-
-        // Bullet with CriticalStrike x10 meets Player
-        {
-            P p = new P();
-            E e = new E();
-            B b = new B();
-            b.firedBy = p;
-            p.damageModifiers.Add(new CriticalStrike());
-            (p.damageModifiers[0] as CriticalStrike).SetStackNum(10);
-            Engine.Calculate(b, e);
-            Debug.Log(e.health);
-            if (e.health != 82f) { throw new Exception(); }
-        }
-
-        // Benchmark
-        {
-            P p = new P();
-            E e = new E();
-            B b = new B();
-            b.firedBy = p;
-            p.damageModifiers.Add(new CriticalStrike());
-
-            // Version with CalculateDamageV1: ~3.000.000 times/s. (no mods)
-            // Version with CalculateDamageV2: ~2.450.000 times/s. (mods, using function variables)
-            // Version with CalculateDamageV3: ~2.450.000 times/s. (mods, using interfaces)
-            // Version with CalculateDamageV3: ~3.450.000 times/s. (mods, and now using classes, and more assumptions)
-            int counter = 0;
-            System.DateTime t1 = System.DateTime.Now;
-            while ((System.DateTime.Now - t1).TotalSeconds < 1) {
-                Engine.Calculate(b, e);
-                counter++;
-            }
-            Debug.Log(counter);
-        }
-        */
     }
 }

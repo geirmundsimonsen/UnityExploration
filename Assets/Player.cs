@@ -11,22 +11,25 @@ public class Player : MonoBehaviour {
     bool isActive = false;
     Vector2 inputLook;
     Vector2 inputPos;
+    Vector2 inputMove;
     bool inputPrimary;
     bool inputSecondary;
 
-    public Rigidbody2D rb;
-    public Vector2 inputMove;
-    public float initialHealth = 100f;
-    public float charge = 0f;
-    public float health = 100f;
-    public float damage = 3f;
-    public List<DamageModifier> damageModifiers = new List<DamageModifier>();
-    public UtilitySkill utilitySkill;
-    public float moveSpeed;
+    [System.NonSerialized] public Rigidbody2D rb;
+    [System.NonSerialized] public List<DamageModifier> damageModifiers = new List<DamageModifier>();
+    [System.NonSerialized] public UtilitySkill utilitySkill;
+    [System.NonSerialized] public Vector2 moveVector;
+    [System.NonSerialized] public Cooldown fireCooldown;
+
+    [System.NonSerialized] public float initialHealth = 100f;
+    [System.NonSerialized] public float health = 100f;
+    [System.NonSerialized] public float charge = 0f;
+    [System.NonSerialized] public float damage = 3f;
+    [System.NonSerialized] public float moveSpeed = 3f;
+    [System.NonSerialized] public float bulletSpeed = 6f;
+    [System.NonSerialized] public bool immortal = false;
+
     public Bullet bullet;
-    public float bulletSpeed;
-    public bool immortal = false;
-    public int primaryCountdown = 0;
 
     private void Awake() {
         endOfBarrel = transform.Find("EndOfBarrel");
@@ -34,19 +37,18 @@ public class Player : MonoBehaviour {
         game = GameObject.FindWithTag("Game").GetComponent<Game>();
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         hud = GameObject.Find("HUD").GetComponent<HUD>();
-
+        fireCooldown = new Cooldown(0.4f);
         utilitySkill = new Blink();
     }
 
     void FixedUpdate() {
         if (isActive) {
-            Primary();
-            Secondary();
+            ShootAndCharge();
             Rotate();
             Move();
             if (utilitySkill != null) {
                 utilitySkill.Update(this);
-            }     
+            }
         }
     }
 
@@ -54,13 +56,14 @@ public class Player : MonoBehaviour {
         MoveCamera();
     }
 
-    void Primary() {
-        primaryCountdown--;
+    void ShootAndCharge() {
+        fireCooldown.Tick();
+        fireCooldown.factor = Mathf.Pow(2.0f, charge / 35f);
 
         if (inputPrimary) {
             inputSecondary = false;
-            if (primaryCountdown <= 0) {
-                primaryCountdown = (int)(50 * Mathf.Pow(2.0f, -charge / 35f));
+            if (fireCooldown.isReady()) {
+                fireCooldown.Reset();
                 charge -= 10;
                 Bullet newBullet = Instantiate(bullet, endOfBarrel.position, transform.rotation);
                 newBullet.firedBy = this;
@@ -68,13 +71,11 @@ public class Player : MonoBehaviour {
                 Destroy(newBullet.gameObject, 10);
             }
         }
-    }
 
-    void Secondary() {
-        hud.ChangeChargeBar(charge / 200f + 0.5f);
         if (inputSecondary && !inputPrimary && charge < 100) {
             charge += 1.0f;
         }
+
         if (!inputSecondary) {
             if (charge < 0) {
                 charge += 0.07f;
@@ -82,11 +83,14 @@ public class Player : MonoBehaviour {
                 charge -= 1f;
             }
         }
+
         if (inputSecondary) {
-            //moveSpeed = 1.5f; buggy
+            moveSpeed = 1f;
         } else {
-            //moveSpeed = 3.0f;
+            moveSpeed = 3.0f;
         }
+
+        hud.ChangeChargeBar(charge / 200f + 0.5f);
     }
 
     void OnPrimary(InputValue value) {
@@ -98,7 +102,7 @@ public class Player : MonoBehaviour {
     }
 
     void OnMove(InputValue value) {
-        inputMove = value.Get<Vector2>() * moveSpeed;
+        inputMove = value.Get<Vector2>();
     }
 
     void OnLook(InputValue value) {
@@ -153,7 +157,8 @@ public class Player : MonoBehaviour {
     }
 
     void Move() {
-        rb.velocity = inputMove;
+        moveVector = inputMove * moveSpeed;
+        rb.velocity = moveVector;
     }
 
     void MoveCamera() {
