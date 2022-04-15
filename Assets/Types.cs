@@ -46,7 +46,6 @@ public class Cooldown {
     }
 
     public void Tick() {
-        Debug.Log(factor);
         runningCooldown -= fixedDeltaTime * factor;
     }
 
