@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
     bool inputPrimary;
     bool inputSecondary;
 
+    // kommentar
+
     [System.NonSerialized] public Rigidbody2D rb;
     [System.NonSerialized] public List<DamageModifier> damageModifiers = new List<DamageModifier>();
     [System.NonSerialized] public UtilitySkill utilitySkill;
