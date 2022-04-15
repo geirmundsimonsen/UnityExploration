@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd93d9874fdc2c41ac41c6644e4af86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  automaticTestMode: 0
+  automaticTestMode: 1
   startFromTitleScreen: 0
   startingLevel: TestLevel
 --- !u!4 &558470477
