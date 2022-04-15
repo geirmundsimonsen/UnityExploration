@@ -5,11 +5,11 @@ public class Game : MonoBehaviour {
     LevelManager levelManager;
     Player player;
 
+    public bool automaticTestMode = false;
     public bool startFromTitleScreen;
     public string startingLevel;
 
     private void Awake() {
-        
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
