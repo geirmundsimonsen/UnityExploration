@@ -3,7 +3,6 @@ using UnityEngine;
 public class Game : MonoBehaviour {
     UIManager uiManager;
     LevelManager levelManager;
-    Player player;
 
     public bool automaticTestMode = false;
     public bool startFromTitleScreen;
@@ -12,7 +11,6 @@ public class Game : MonoBehaviour {
     private void Awake() {
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     void Start() {
@@ -39,7 +37,7 @@ public class Game : MonoBehaviour {
 
     public void StartGameFromLevel(string startingLevel) {
         uiManager.ActivateScreen("HUD");
-        player.Reset();
+        Instantiate(Prefabs.player);
         levelManager.StartLevel(startingLevel);
     }
 }

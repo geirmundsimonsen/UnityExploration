@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     Camera mainCamera;
     Transform endOfBarrel;
 
-    bool isActive = false;
+    bool isActive = true;
     Vector2 inputLook;
     Vector2 inputPos;
     Vector2 inputMove;
@@ -141,11 +141,6 @@ public class Player : MonoBehaviour {
             isActive = false;
             game.EndGame(GameResult.Lose);
         }
-    }
-
-    public void Reset() {
-        ChangeHealth(initialHealth, ValueChangeMode.Absolute);
-        isActive = true;
     }
 
     void Rotate() {
