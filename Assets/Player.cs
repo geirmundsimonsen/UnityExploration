@@ -29,8 +29,6 @@ public class Player : MonoBehaviour {
     [System.NonSerialized] public float bulletSpeed = 6f;
     [System.NonSerialized] public bool immortal = false;
 
-    public Bullet bullet;
-
     private void Awake() {
         endOfBarrel = transform.Find("EndOfBarrel");
         rb = GetComponent<Rigidbody2D>();
@@ -65,7 +63,7 @@ public class Player : MonoBehaviour {
             if (fireCooldown.isReady()) {
                 fireCooldown.Reset();
                 charge -= 10;
-                Bullet newBullet = Instantiate(bullet, endOfBarrel.position, transform.rotation);
+                Bullet newBullet = Instantiate(Prefabs.bullet, endOfBarrel.position, transform.rotation);
                 newBullet.firedBy = this;
                 newBullet.init(Player2CursorVector(), bulletSpeed);
                 Destroy(newBullet.gameObject, 10);

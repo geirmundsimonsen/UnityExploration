@@ -1,12 +1,10 @@
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
-    public GameObject[] levels;
-
     public void StartLevel(string name) {
         RemoveLevel();
 
-        foreach (GameObject level in levels) {
+        foreach (GameObject level in Prefabs.levels) {
             if (level.name == name) {
                 GameObject newLevel = Instantiate(level);
                 newLevel.name = "ActiveLevel";

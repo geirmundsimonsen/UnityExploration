@@ -9,7 +9,6 @@ public class Snark : Enemy {
 
     public float armor = 0.2f;
     public float moveSpeed = 1.5f;
-    public Bullet bullet;
 
     void Awake() {
         endOfBarrel = transform.Find("EndOfBarrel");
@@ -34,7 +33,7 @@ public class Snark : Enemy {
         counter += 1.0f;
 
         if (counter > 40.0f) {
-            Bullet newBullet = Instantiate(bullet, endOfBarrel.position, transform.rotation);
+            Bullet newBullet = Instantiate(Prefabs.bullet, endOfBarrel.position, transform.rotation);
             newBullet.firedBy = this;
             newBullet.init(playerTransform.position - transform.position, 5);
             Destroy(newBullet.gameObject, 10);
