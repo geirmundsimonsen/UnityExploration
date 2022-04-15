@@ -71,7 +71,11 @@ public class Player : MonoBehaviour {
         }
 
         if (inputSecondary && !inputPrimary && charge < 100) {
-            charge += 1.0f;
+            if (charge < 0) {
+                charge += 1.0f * (1 + (Mathf.Abs(charge) / 100));
+            } else if (charge > 0) {
+                charge += 1.0f * (1 - (Mathf.Abs(charge) / 100));
+            }
         }
 
         if (!inputSecondary) {
