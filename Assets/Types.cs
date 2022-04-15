@@ -57,3 +57,7 @@ public class Cooldown {
         runningCooldown = cooldown;
     }
 }
+
+public class Curve {
+    // TODO: Make this, like an EnvGen with control points.
+}
