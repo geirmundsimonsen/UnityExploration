@@ -38,6 +38,7 @@ public class Game : MonoBehaviour {
     public void StartGameFromLevel(string startingLevel) {
         uiManager.ActivateScreen("HUD");
         Instantiate(Prefabs.player);
-        levelManager.StartLevel(startingLevel);
+        GameObject.Find("LevelManager").GetComponent<LevelConstructor>().Spawn();
+        //levelManager.StartLevel(startingLevel);
     }
 }

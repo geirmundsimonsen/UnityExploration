@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[DefaultExecutionOrder(0)] // not needed, but could be useful. All scripts are 0. negative: earlier, positive: later.
 public class Player : MonoBehaviour {
     Game game;
     HUD hud;
     Camera mainCamera;
     Transform endOfBarrel;
 
-    bool isActive = true;
     Vector2 inputLook;
     Vector2 inputPos;
     Vector2 inputMove;
@@ -40,13 +40,11 @@ public class Player : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (isActive) {
-            ShootAndCharge();
-            Rotate();
-            Move();
-            if (utilitySkill != null) {
-                utilitySkill.Update(this);
-            }
+        ShootAndCharge();
+        Rotate();
+        Move();
+        if (utilitySkill != null) {
+            utilitySkill.Update(this);
         }
     }
 
