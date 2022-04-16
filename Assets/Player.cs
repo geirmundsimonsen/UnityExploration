@@ -127,7 +127,7 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("ExitZone")) {
-            isActive = false;
+            Destroy(gameObject);
             game.EndGame(GameResult.Win);
         }
     }
@@ -142,7 +142,7 @@ public class Player : MonoBehaviour {
         hud.ChangeHealthBar(health / initialHealth);
 
         if (health <= 0) {
-            isActive = false;
+            Destroy(gameObject);
             game.EndGame(GameResult.Lose);
         }
     }
