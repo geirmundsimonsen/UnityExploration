@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d70bd66840ea8e4f965f3f16035c890, type: 3}
   m_Name: LevelAreaData
   m_EditorClassIdentifier: 
+  width: 8
+  height: 70
+  wallThickness: 20

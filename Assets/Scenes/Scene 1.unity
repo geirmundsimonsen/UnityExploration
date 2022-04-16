@@ -1387,6 +1387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 888596873}
   - component: {fileID: 888596874}
+  - component: {fileID: 888596875}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1420,6 +1421,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e10d2339d80a4245952a6e932ddb864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &888596875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888596872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63da5c4c9d5b59f4c8a004ce8cfcc7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelAreaData: {fileID: 11400000, guid: e5eeb17e3bc31124a873411dc2bcc047, type: 2}
 --- !u!1 &979721192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1831,11 @@ MonoBehaviour:
   - {fileID: 8209032525122324733, guid: 991f9bcaf25187549899e7913947a360, type: 3}
   player: {fileID: 4862391438444311245, guid: c1f718aa913a39d4ea8e484529cbd349, type: 3}
   bullet: {fileID: 4812026602338141936, guid: bdbc260dd2d401c48ba7bc09d5e4fdc4, type: 3}
+  exitZone: {fileID: 4239448916923789890, guid: 9d4a7667991ef824ea4e3aa295a49ac7, type: 3}
+  playerStartingPos: {fileID: 8618403694149140550, guid: e7564c5440763e5469cc16e2dfa560c1, type: 3}
+  levelArea: {fileID: -3715388065942362224, guid: 135f449c0686ce344ad0554a475af488, type: 3}
+  hugger: {fileID: 6776480494313279225, guid: 6e006924673b1564990997d6ccc2ff3e, type: 3}
+  snark: {fileID: 6953264469953025240, guid: 4c57ef46141078d4b8ba15f002cbc34d, type: 3}
 --- !u!1 &1360176972
 GameObject:
   m_ObjectHideFlags: 0
