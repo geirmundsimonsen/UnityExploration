@@ -21,7 +21,7 @@ public class PrefabManager : MonoBehaviour {
         Prefabs.levelArea = levelArea;
         Prefabs.hugger = hugger;
         Prefabs.snark = snark;
-}
+    }
 }
 
 public class Prefabs {
