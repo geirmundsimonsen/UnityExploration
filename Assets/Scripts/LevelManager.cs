@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-    void RemoveLevel() {
+    public void RemoveLevel() {
         GameObject activeLevel = GameObject.Find("ActiveLevel");
         if (activeLevel != null) {
             Destroy(activeLevel);

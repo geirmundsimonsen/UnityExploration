@@ -14,11 +14,10 @@ public class Game : MonoBehaviour {
     }
 
     void Start() {
-        TestBench.Test();
-        
         if (startFromTitleScreen) {
             StartGameFromTitleScreen();
         } else {
+            //StartRandomizedLevel();
             StartGameFromLevel(startingLevel);
         }
     }
@@ -35,10 +34,14 @@ public class Game : MonoBehaviour {
         uiManager.ActivateScreen("TitleScreen");
     }
 
+    public void StartRandomizedLevel() {
+        uiManager.ActivateScreen("HUD");
+        levelManager.RemoveLevel();
+        levelManager.GetComponent<LevelConstructor>().Spawn();
+    }
+
     public void StartGameFromLevel(string startingLevel) {
         uiManager.ActivateScreen("HUD");
-        Instantiate(Prefabs.player);
-        GameObject.Find("LevelManager").GetComponent<LevelConstructor>().Spawn();
-        //levelManager.StartLevel(startingLevel);
+        levelManager.StartLevel(startingLevel);
     }
 }

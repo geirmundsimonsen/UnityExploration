@@ -37,6 +37,6 @@ public class UIManager : MonoBehaviour {
 
     public void StartGame() {
         DeactivateAllScreens();
-        game.StartGameFromLevel("TestLevel");
+        game.StartRandomizedLevel();
     }
 }
