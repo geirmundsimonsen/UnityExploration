@@ -16,6 +16,7 @@ public class LevelConstructor : MonoBehaviour {
         float enemySpawnPointHeight = levelAreaData.height - 2;
 
         GameObject parent = new GameObject("ActiveLevel");
+        Prefabs.activeLevel = parent;
 
         Instantiate(Prefabs.levelArea, parent.transform);
 

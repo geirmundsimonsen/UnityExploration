@@ -13,12 +13,12 @@ public class Game : MonoBehaviour {
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
     }
 
-    void Start() {
+    void Start() {        
         if (startFromTitleScreen) {
             StartGameFromTitleScreen();
         } else {
-            //StartRandomizedLevel();
-            StartGameFromLevel(startingLevel);
+            StartRandomizedLevel();
+            //StartGameFromLevel(startingLevel);
         }
     }
 
@@ -30,6 +30,12 @@ public class Game : MonoBehaviour {
         }
     }
 
+    public void NextLevel() {
+        uiManager.ActivateScreen("NextLevel");
+        GameObject.Find("NextLevel").GetComponent<NextLevel>().toBlack = true;
+
+    }
+
     public void StartGameFromTitleScreen() {
         uiManager.ActivateScreen("TitleScreen");
     }
@@ -37,6 +43,8 @@ public class Game : MonoBehaviour {
     public void StartRandomizedLevel() {
         uiManager.ActivateScreen("HUD");
         levelManager.RemoveLevel();
+
+        // fires bullet
         levelManager.GetComponent<LevelConstructor>().Spawn();
     }
 

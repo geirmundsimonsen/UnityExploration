@@ -36,7 +36,7 @@ public class Snark : Enemy {
         counter += 1.0f;
 
         if (counter > 40.0f) {
-            Bullet newBullet = Instantiate(Prefabs.bullet, endOfBarrel.position, transform.rotation);
+            Bullet newBullet = Instantiate(Prefabs.bullet, endOfBarrel.position, transform.rotation, Prefabs.activeLevel.transform);
             newBullet.firedBy = this;
             newBullet.init(target.position - transform.position, 5);
             Destroy(newBullet.gameObject, 10);

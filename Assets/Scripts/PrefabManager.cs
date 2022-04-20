@@ -33,4 +33,5 @@ public class Prefabs {
     public static LevelArea levelArea;
     public static Hugger hugger;
     public static Snark snark;
+    public static GameObject activeLevel = null;
 }

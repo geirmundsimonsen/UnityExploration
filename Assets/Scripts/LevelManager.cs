@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
         foreach (GameObject level in Prefabs.levels) {
             if (level.name == name) {
                 GameObject newLevel = Instantiate(level);
+                Prefabs.activeLevel = newLevel;
                 newLevel.name = "ActiveLevel";
             }
         }

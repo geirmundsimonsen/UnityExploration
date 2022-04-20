@@ -61,7 +61,7 @@ public class Player : MonoBehaviour {
             if (fireCooldown.isReady()) {
                 fireCooldown.Reset();
                 charge -= 10;
-                Bullet newBullet = Instantiate(Prefabs.bullet, endOfBarrel.position, transform.rotation);
+                Bullet newBullet = Instantiate(Prefabs.bullet, endOfBarrel.position, transform.rotation, Prefabs.activeLevel.transform);
                 newBullet.firedBy = this;
                 newBullet.init(Player2CursorVector(), bulletSpeed);
                 Destroy(newBullet.gameObject, 10);
@@ -126,7 +126,8 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("ExitZone")) {
             Destroy(gameObject);
-            game.EndGame(GameResult.Win);
+            //game.EndGame(GameResult.Win);
+            game.NextLevel();
         }
     }
 
