@@ -9,19 +9,13 @@ public class NextLevel : MonoBehaviour {
     Image image;
 
     void Awake() {
-        image = GetComponentInChildren(typeof(Image)) as Image;
-    }
-
-    void Start() {
-        
+        image = transform.GetChild(0).GetComponent<Image>();
     }
 
     void Update() {
         if (toBlack) {
-
-            alpha += 0.01f;
+            alpha += 0.002f;
             if (alpha < 1) {
-                Debug.Log(alpha);
                 image.color = new Color(0, 0, 0, alpha);
             }
         }

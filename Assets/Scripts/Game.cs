@@ -33,7 +33,6 @@ public class Game : MonoBehaviour {
     public void NextLevel() {
         uiManager.ActivateScreen("NextLevel");
         GameObject.Find("NextLevel").GetComponent<NextLevel>().toBlack = true;
-
     }
 
     public void StartGameFromTitleScreen() {
